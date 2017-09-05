@@ -10,7 +10,7 @@ scalaVersion := currentScalaVersion
 
 crossScalaVersions := Seq(currentScalaVersion, scala211Version)
 
-organization := "org.mdedetrich"
+organization := "org.danielnixon"
 
 scalacOptions ++= Seq(
   "-target:jvm-1.8",
