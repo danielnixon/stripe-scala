@@ -124,7 +124,7 @@ object Subscriptions extends LazyLogging {
                           metadata: Option[Map[String, String]] = None,
                           taxPercent: Option[BigDecimal] = None,
                           trialEnd: Option[OffsetDateTime] = None,
-                          trialStart: Option[OffsetDateTime] = None)
+                          trialStart: Option[OffsetDateTime] = None) extends StripeObject
 
   implicit val subscriptionDecoder: Decoder[Subscription] = Decoder.forProduct17(
     "id",
