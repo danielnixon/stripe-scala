@@ -42,6 +42,6 @@
   },
   "livemode": false,
   "pending_webhooks": 0,
-  "request": "req_AUrMTnwsBY2AJy",
+  "request": { "id": "req_AUrMTnwsBY2AJy", "idempotency_key": null },
   "type": "customer.created"
 }

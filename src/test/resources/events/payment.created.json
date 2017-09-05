@@ -60,7 +60,7 @@
   },
   "livemode": false,
   "pending_webhooks": 1,
-  "request": "req_AVgr4Yq2EbdUWo",
+  "request": { "id": "req_AVgr4Yq2EbdUWo", "idempotency_key": null },
   "type": "payment.created",
   "user_id": "acct_19sTrjDUqe4uvjwo"
 }

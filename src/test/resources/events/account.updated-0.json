@@ -126,7 +126,7 @@
   },
   "livemode": false,
   "pending_webhooks": 1,
-  "request": "req_AVgjyQZfzvfUvD",
+  "request": { "id": "req_AVgjyQZfzvfUvD", "idempotency_key": null },
   "type": "account.updated",
   "user_id": "acct_1AAfLzCzf2OYLbV9"
 }
