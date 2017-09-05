@@ -109,7 +109,7 @@ object Events extends LazyLogging {
       data: Data,
       livemode: Boolean,
       pendingWebhooks: Long,
-      request: Option[String],
+      request: Option[Request],
       `type`: Type,
       userId: Option[String],
       account: Option[String]

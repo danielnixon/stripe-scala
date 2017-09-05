@@ -2,6 +2,7 @@ package org.mdedetrich.stripe.v1
 
 import io.circe.{Decoder, DecodingFailure, Encoder}
 import cats.syntax.either._
+import org.mdedetrich.stripe.v1.Subscriptions.Subscription
 
 abstract class StripeObject
 
@@ -21,6 +22,7 @@ object StripeObject {
       case "dispute"           => implicitly[Decoder[Disputes.Dispute]].apply(c)
       case "bitcoin_receiver"  => implicitly[Decoder[BitcoinReceivers.BitcoinReceiver]].apply(c)
       case "transfer_reversal" => implicitly[Decoder[TransferReversals.TransferReversal]].apply(c)
+      case "subscription"      => implicitly[Decoder[Subscription]].apply(c)
       case _                   => Left(DecodingFailure("Unknown Stripe Object", c.history))
     }
   }
@@ -39,6 +41,7 @@ object StripeObject {
     case obj: Cards.Card                         => implicitly[Encoder[Cards.Card]].apply(obj)
     case obj: BitcoinReceivers.BitcoinReceiver   => implicitly[Encoder[BitcoinReceivers.BitcoinReceiver]].apply(obj)
     case obj: TransferReversals.TransferReversal => implicitly[Encoder[TransferReversals.TransferReversal]].apply(obj)
+    case obj: Subscription                       => implicitly[Encoder[Subscription]].apply(obj)
     case obj                                     => throw new IllegalArgumentException(s"Unable to encode object of type ${obj.getClass.getName}")
   }
 }
