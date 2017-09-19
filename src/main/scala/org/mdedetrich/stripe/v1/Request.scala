@@ -2,7 +2,7 @@ package org.mdedetrich.stripe.v1
 
 import io.circe.{Decoder, Encoder}
 
-final case class Request(id: String, idempotencyKey: Option[String])
+final case class Request(id: Option[String], idempotencyKey: Option[String])
 
 object Request {
   implicit val requestDecoder: Decoder[Request] = Decoder.forProduct2(
