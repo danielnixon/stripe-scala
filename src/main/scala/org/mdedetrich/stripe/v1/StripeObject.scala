@@ -1,10 +1,21 @@
 package org.mdedetrich.stripe.v1
 
-import io.circe.{Decoder, DecodingFailure, Encoder}
+import io.circe._
 import cats.syntax.either._
+import io.circe.Decoder.Result
 import org.mdedetrich.stripe.v1.Subscriptions.Subscription
 
 abstract class StripeObject
+
+final case class UnknownStripeObject(json: Json) extends StripeObject
+
+object UnknownStripeObject {
+  implicit val decodeUnknownStripeEvent: Decoder[UnknownStripeObject] = new Decoder[UnknownStripeObject] {
+    override def apply(c: HCursor): Result[UnknownStripeObject] = {
+      Right(UnknownStripeObject(c.value))
+    }
+  }
+}
 
 object StripeObject {
   implicit val stripeObjectDecoder: Decoder[StripeObject] = Decoder.instance[StripeObject] { c =>
@@ -23,7 +34,7 @@ object StripeObject {
       case "bitcoin_receiver"  => implicitly[Decoder[BitcoinReceivers.BitcoinReceiver]].apply(c)
       case "transfer_reversal" => implicitly[Decoder[TransferReversals.TransferReversal]].apply(c)
       case "subscription"      => implicitly[Decoder[Subscription]].apply(c)
-      case _                   => Left(DecodingFailure("Unknown Stripe Object", c.history))
+      case _                   => implicitly[Decoder[UnknownStripeObject]].apply(c)
     }
   }
 
