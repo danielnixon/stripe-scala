@@ -10,7 +10,7 @@ object Discounts {
 
   case class Discount(coupon: Coupon,
                       customer: String,
-                      end: OffsetDateTime,
+                      end: Option[OffsetDateTime],
                       start: OffsetDateTime,
                       subscription: Option[String])
       extends StripeObject
